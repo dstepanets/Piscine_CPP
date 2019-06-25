@@ -16,6 +16,8 @@ CC			= clang++
 FLAGS		= -g -Wall -Wextra -Werror -std=c++98
 
 SRC			=	phonebook.cpp \
+				add_contact.cpp \
+				search.cpp \
 				Contact.class.cpp
 
 HEADS		=	phonebook.hpp \

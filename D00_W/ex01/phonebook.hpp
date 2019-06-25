@@ -24,7 +24,10 @@ typedef struct		s_phonebook
 }					t_phonebook;
 
 Contact			addContact();
+
 void			searchContact(s_phonebook pb);
 void			displayContact(s_phonebook pb);
+
+void			eof_exit(void);
 
 #endif
