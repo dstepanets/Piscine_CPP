@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// cl++ Account.class.cpp resources/tests.cpp
-
 #include "./resources/Account.class.hpp"
 #include <iostream>
 #include <iomanip>
