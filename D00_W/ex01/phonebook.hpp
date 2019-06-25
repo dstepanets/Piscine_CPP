@@ -25,7 +25,6 @@ typedef struct		s_phonebook
 
 Contact			addContact();
 void			searchContact(s_phonebook pb);
-
-
+void			displayContact(s_phonebook pb);
 
 #endif
