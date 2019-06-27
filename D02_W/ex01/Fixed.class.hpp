@@ -20,6 +20,8 @@ class		Fixed
 
 	public:
 		Fixed(void);
+		Fixed(int const ival);
+		Fixed(float const fval);
 		Fixed(Fixed const & src);
 		~Fixed(void);
 
@@ -34,5 +36,7 @@ class		Fixed
 
 
 };
+
+std::ostream & operator<<(std::ostream & o, Fixed const & rhs);
 
 #endif
