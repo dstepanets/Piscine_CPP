@@ -29,7 +29,7 @@ class		Fixed
 		void	setRawBits(int const raw);
 
 	private:
-		int					_value;
+		int					_fixedPoint;
 		const static int	_fractBits;
 
 

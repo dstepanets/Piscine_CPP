@@ -33,7 +33,7 @@ class		Fixed
 		int		toInt(void) const;
 
 	private:
-		int					_value;
+		int					_fixedPoint;
 		const static int	_fractBits;
 };
 
