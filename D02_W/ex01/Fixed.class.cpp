@@ -45,7 +45,7 @@ Fixed::~Fixed(void)
 
 //OPERATORS
 
-Fixed & 		Fixed::operator=(Fixed const & rhs)
+Fixed & 			Fixed::operator=(Fixed const & rhs)
 {
 	std::cout << "Assignation operator called" << std::endl;
 	if (this != &rhs)
@@ -53,22 +53,37 @@ Fixed & 		Fixed::operator=(Fixed const & rhs)
 	return (*this);
 }
 
-std::ostream &	operator<<( std::ostream & o, Fixed const & rhs )
+std::ostream &		operator<<( std::ostream & o, Fixed const & rhs )
 {
 	o << rhs.toFloat();
-	return o;
+	return (o);
 }
 
 //GETTERS-SETTERS
 
-int			Fixed::getRawBits(void) const
+int					Fixed::getRawBits(void) const
 {
 	std::cout << "getRawBits member function called" << std::endl;
 	return (this->_value);
 }
 
-void		Fixed::setRawBits(int const raw)
+void				Fixed::setRawBits(int const raw)
 {
 	std::cout << "setRawBits member function called" << std::endl;
 	this->_value = raw;
 }
+
+//MEMBER METHODS
+
+float				Fixed::toFloat(void) const
+{
+	return ((float)this->getRawBits() / (1 << this->_fractBits));
+}
+
+int					Fixed::toInt(void) const
+{
+	return (this->getRawBits() >> this->_fractBits);
+}
+
+const int			Fixed::_fractBits = 8;
+
