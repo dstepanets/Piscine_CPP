@@ -28,7 +28,7 @@ Fixed::Fixed(int const ival)
 
 Fixed::Fixed(float const fval)
 {
-	std::cout << "Int constructor called" << std::endl;
+	std::cout << "Float constructor called" << std::endl;
 	this->setRawBits(roundf(fval * (1 << this->_fractBits)));
 }
 
@@ -63,13 +63,11 @@ std::ostream &		operator<<( std::ostream & o, Fixed const & rhs )
 
 int					Fixed::getRawBits(void) const
 {
-//	std::cout << "getRawBits member function called" << std::endl;
 	return (this->_fixedPoint);
 }
 
 void				Fixed::setRawBits(int const raw)
 {
-//	std::cout << "setRawBits member function called" << std::endl;
 	this->_fixedPoint = raw;
 }
 
