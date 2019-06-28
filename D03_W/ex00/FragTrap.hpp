@@ -15,15 +15,29 @@
 
 # include <iostream>
 
+# define RED		"\e[31m"
+# define GREEN 		"\e[32m"
+# define YELLOW		"\e[33m"
+# define BLUE		"\e[34m"
+# define MAGENTA	"\e[35m"
+# define CYAN 		"\e[36m"
+# define DEF		"\e[39m"
+
+
 class					FragTrap
 {
 	public:
 		FragTrap(void);
 		FragTrap(const std::string name);
-		FragTrap(const FragTrap &obj);
+		FragTrap(const FragTrap &rhs);
 		~FragTrap(void);
 
 		FragTrap &	operator=(const FragTrap &rhs);
+
+		std::string		getName(void) const;
+		unsigned int	FragTrap::getLevel(void) const;
+		unsigned int	getHp(void) const;
+		unsigned int	getEnergy(void) const;
 
 		void			rangedAttack(std::string const &target);
 		void			meleeAttack(std::string const &target);
@@ -33,19 +47,22 @@ class					FragTrap
 		void			vaulthunter_dot_exe(std::string const & target);
 
 	private:
-		std::string		_name;
-		unsigned int	_health;
-		unsigned int	_maxHealth;
-		unsigned int	_energy;
-		unsigned int	_maxEnergy;
-		unsigned int	_level;
-		unsigned int	_meleeDmg;
-		unsigned int	_rangedDmg;
-		unsigned int	_armor;
+		std::string					_name;
+		unsigned int				_level;
+
+		unsigned int				_hp;
+		unsigned int static const	_maxHp;
+
+		unsigned int				_energy;
+		unsigned int static const	_maxEnergy;
+
+		unsigned int				_meleeDmg;
+		unsigned int				_rangedDmg;
+		unsigned int				_armor;
 
 		static std::string _vaulthunterQuotes[25];
 };
 
-std::ostream	&operator<<(std::ostream &o, FragTrap const &i);
+std::ostream	&operator << (std::ostream &o, FragTrap const &i);
 
 #endif
