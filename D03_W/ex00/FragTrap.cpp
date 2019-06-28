@@ -19,15 +19,15 @@ unsigned int const		FragTrap::_maxEnergy = 100;
 /*======================CONSTRUCTORS=========================================*/
 
 FragTrap::FragTrap(void) :
-					_name("Default"), _level(1), _hp(100), _energy(100),
-					_meleeDmg(30), _rangedDmg(20), _armor(5)
+					_name("Default"), _level(1), _hp(100), _armor(5), _energy(100),
+					_meleeDmg(30), _rangedDmg(20)
 {
 	std::cout << "<" << _name <<">: Look out everybody! Things are about to get awesome!" << std::endl;
 }
 
 FragTrap::FragTrap(std::string name) :
-					_name(name), _level(1), _hp(100), _energy(100),
-					_meleeDmg(30), _rangedDmg(20), _armor(5)
+					_name(name), _level(1), _hp(100), _armor(5), _energy(100),
+					_meleeDmg(30), _rangedDmg(20)
 {
 	std::cout << "<" << _name <<">: Let's get this party started!" << std::endl;
 }
@@ -87,34 +87,86 @@ unsigned int		FragTrap::getEnergy(void) const
 	return (this->_energy);
 }
 
+unsigned int		FragTrap::getMeleeDmg(void) const
+{
+	return (this->_meleeDmg);
+}
+
+unsigned int		FragTrap::getRangedDmg(void) const
+{
+	return (this->_rangedDmg);
+}
+
 /*=======================ACTIONS=============================================*/
 
 void				FragTrap::rangedAttack(std::string const &target)
 {
-	std::cout << "FR4G-TP <" << _name <<"> CYANattacks "  << target
-			<< " with a blaster, causing " << _rangedDmg << " points of damage! DEF" << std::endl;
+	std::cout << CYAN <<"FR4G-TP <" << _name <<"> attacks "  << target
+			<< " with a blaster." << std::endl << "\tCauses " << _rangedDmg
+			<< " points of damage!" << DEF << std::endl;
 }
 
 void				FragTrap::meleeAttack(std::string const &target)
 {
-	std::cout << "FR4G-TP <" << _name <<"> attacks "  << target
-		<< " with a hammer, causing " << _meleeDmg << " points of damage!" << std::endl;
+	std::cout << BLUE <<"FR4G-TP <" << _name <<"> attacks "  << target
+		<< " with a hammer." << std::endl << "\tCauses " << _meleeDmg
+		<< " points of damage!" << DEF << std::endl;
 }
 
 void				FragTrap::takeDamage(unsigned int amount)
 {
-	std::cout << "FR4G-TP <" << _name <<"> takes "  << amount
-		<< " of damage!" << std::endl << "\tIt now has " << _hp << "left" << std::endl;
+	if ((_hp + _armor) <= amount)
+		_hp = 0;
+	else
+		_hp -= (amount - _armor);
+	std::cout << RED << "FR4G-TP <" << _name <<"> takes ("  << amount << " - " << _armor
+		<< ") of damage!" << std::endl << "\tHe now has "
+		<< _hp << " HP left." << DEF << std::endl;
+	if (_hp == 0)
+		std::cout << "<" << _name <<">: Oh my! This is the end :(" << std::endl;
 }
 
 void				FragTrap::beRepaired(unsigned int amount)
 {
-	std::cout << "FR4G-TP <" << _name <<"> is repaired "  << amount
-		<< " of damage!" << std::endl << "\tIt now has " << _hp << "left" << std::endl;
+	if (_hp + amount > _maxHp)
+		_hp = _maxHp;
+	else
+		_hp += amount;
+	std::cout << GREEN << "FR4G-TP <" << _name <<"> is repaired "  << amount
+		<< " of damage!" << std::endl << "\tHe now has "
+		<< _hp << " HP." << DEF << std::endl;
 }
 
-void				FragTrap::vaulthunter_dot_exe(std::string const & target)
+unsigned int			FragTrap::vaulthunter_dot_exe(std::string const & target)
 {
-	
+	std::string attacks[5] =
+	{
+		"~Pizza Slice~",
+		"~Huge Black Dildo~",
+		"~Full Collection of Lenin's Works in 100500 Volumes~",
+		"~Hedgehog~",
+		"~Segmentation Fault~"
+	};
+	unsigned int	damage[5] = {5, 10, 15, 20, 30};
+
+	static	size_t	mod = 6;
+	mod = 100 % mod * 11;
+	srand(time(NULL) * mod * mod);
+	size_t	i = rand() % 5;
+
+	std::cout << MAGENTA <<"FR4G-TP <" << _name <<"> attacks "  << target
+		<< " with " << attacks[i] << "." << std::endl
+		<< "\tCauses " << damage[i] << " points of damage!" << DEF << std::endl;
+
+	if (_energy < 25)
+		_energy = 0;
+	else 
+		_energy -= 25;
+	std::cout << YELLOW <<"FR4G-TP <" << _name <<"> has "  << _energy
+		<< " energy left." << DEF << std::endl;
+	if (_energy == 0)
+		std::cout  << "<" << _name <<">:  I'm out of energy :(" << std::endl;
+
+	return (damage[i]);
 }
 

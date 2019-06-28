@@ -22,6 +22,7 @@
 # define MAGENTA	"\e[35m"
 # define CYAN 		"\e[36m"
 # define DEF		"\e[39m"
+# define WHITE		"\e[97m"
 
 
 class					FragTrap
@@ -35,16 +36,18 @@ class					FragTrap
 		FragTrap &	operator=(const FragTrap &rhs);
 
 		std::string		getName(void) const;
-		unsigned int	FragTrap::getLevel(void) const;
+		unsigned int	getLevel(void) const;
 		unsigned int	getHp(void) const;
 		unsigned int	getEnergy(void) const;
+		unsigned int	getMeleeDmg(void) const;
+		unsigned int	getRangedDmg(void) const;
 
 		void			rangedAttack(std::string const &target);
 		void			meleeAttack(std::string const &target);
 		void			takeDamage(unsigned int amount);
 		void			beRepaired(unsigned int amount);
 
-		void			vaulthunter_dot_exe(std::string const & target);
+		unsigned int	vaulthunter_dot_exe(std::string const & target);
 
 	private:
 		std::string					_name;
@@ -52,13 +55,13 @@ class					FragTrap
 
 		unsigned int				_hp;
 		unsigned int static const	_maxHp;
+		unsigned int				_armor;
 
 		unsigned int				_energy;
 		unsigned int static const	_maxEnergy;
 
 		unsigned int				_meleeDmg;
 		unsigned int				_rangedDmg;
-		unsigned int				_armor;
 
 		static std::string _vaulthunterQuotes[25];
 };
