@@ -13,6 +13,7 @@
 #ifndef SCAVTRAP_HPP
 # define SCAVTRAP_HPP
 
+#include "ClapTrap.hpp"
 # include <iostream>
 
 # define RED		"\e[31m"
@@ -25,7 +26,7 @@
 # define WHITE		"\e[97m"
 
 
-class					ScavTrap
+class					ScavTrap : public ClapTrap
 {
 	public:
 		ScavTrap(void);
@@ -35,33 +36,10 @@ class					ScavTrap
 
 		ScavTrap &	operator=(const ScavTrap &rhs);
 
-		std::string		getName(void) const;
-		unsigned int	getLevel(void) const;
-		unsigned int	getHp(void) const;
-		unsigned int	getEnergy(void) const;
-		unsigned int	getMeleeDmg(void) const;
-		unsigned int	getRangedDmg(void) const;
-
 		void			rangedAttack(std::string const &target);
 		void			meleeAttack(std::string const &target);
-		void			takeDamage(unsigned int amount);
-		void			beRepaired(unsigned int amount);
 
 		void			challengeNewcomer(std::string const & target);
-
-	private:
-		std::string					_name;
-		unsigned int				_level;
-
-		unsigned int				_hp;
-		unsigned int static const	_maxHp;
-		unsigned int				_armor;
-
-		unsigned int				_energy;
-		unsigned int static const	_maxEnergy;
-
-		unsigned int				_meleeDmg;
-		unsigned int				_rangedDmg;
 };
 
 std::ostream	&operator << (std::ostream &o, ScavTrap const &i);

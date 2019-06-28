@@ -11,23 +11,17 @@
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
+#include "ClapTrap.hpp"
 #include <iostream>
-
-unsigned int const		ScavTrap::_maxHp = 100;
-unsigned int const		ScavTrap::_maxEnergy = 50;
 
 /*======================CONSTRUCTORS=========================================*/
 
-ScavTrap::ScavTrap(void) :
-					_name("Default"), _level(1), _hp(100), _armor(3), _energy(50),
-					_meleeDmg(20), _rangedDmg(15)
+ScavTrap::ScavTrap(void) : ClapTrap("ScavTrap", 1, 100, 100, 3, 50, 50, 20, 15)
 {
 	std::cout << "<" << _name <<">: Recompiling my combat code!" << std::endl;
 }
 
-ScavTrap::ScavTrap(std::string name) :
-					_name(name), _level(1), _hp(100), _armor(3), _energy(50),
-					_meleeDmg(20), _rangedDmg(15)
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name, 1, 100, 100, 3, 50, 50, 20, 15)
 {
 	std::cout << "<" << _name <<">: I am a tornado of death and bullets!" << std::endl;
 }
@@ -65,38 +59,6 @@ std::ostream &		operator << ( std::ostream & o, ScavTrap const &i)
 	return (o);
 }
 
-/*=======================GETTERS=============================================*/
-
-std::string			ScavTrap::getName(void) const
-{
-	return (this->_name);
-}
-
-unsigned int		ScavTrap::getLevel(void) const
-{
-	return (this->_level);
-}
-
-unsigned int		ScavTrap::getHp(void) const
-{
-	return (this->_hp);
-}
-
-unsigned int		ScavTrap::getEnergy(void) const
-{
-	return (this->_energy);
-}
-
-unsigned int		ScavTrap::getMeleeDmg(void) const
-{
-	return (this->_meleeDmg);
-}
-
-unsigned int		ScavTrap::getRangedDmg(void) const
-{
-	return (this->_rangedDmg);
-}
-
 /*=======================ACTIONS=============================================*/
 
 void				ScavTrap::rangedAttack(std::string const &target)
@@ -111,30 +73,6 @@ void				ScavTrap::meleeAttack(std::string const &target)
 	std::cout << BLUE <<"FR4G-TP <" << _name <<"> attacks "  << target
 		<< " with a bare manipulators." << std::endl << "DAMAGE: " << _meleeDmg
 		<< DEF << std::endl;
-}
-
-void				ScavTrap::takeDamage(unsigned int amount)
-{
-	if ((_hp + _armor) <= amount)
-		_hp = 0;
-	else
-		_hp -= (amount - _armor);
-	std::cout << RED << "FR4G-TP <" << _name <<"> takes ("  << amount << " - " << _armor
-		<< ") of damage!" << std::endl << "\tHe now has "
-		<< _hp << " HP left." << DEF << std::endl;
-	if (_hp == 0)
-		std::cout << "<" << _name <<">: Oh my! This is the end :(" << std::endl;
-}
-
-void				ScavTrap::beRepaired(unsigned int amount)
-{
-	if (_hp + amount > _maxHp)
-		_hp = _maxHp;
-	else
-		_hp += amount;
-	std::cout << GREEN << "FR4G-TP <" << _name <<"> is repaired "  << amount
-		<< " of damage!" << std::endl << "\tHe now has "
-		<< _hp << " HP." << DEF << std::endl;
 }
 
 void				ScavTrap::challengeNewcomer(std::string const & target)
@@ -164,5 +102,5 @@ void				ScavTrap::challengeNewcomer(std::string const & target)
 		<< " energy left." << DEF << std::endl;
 	if (_energy == 0)
 		std::cout  << "<" << _name <<">:  I'm out of energy :(" << std::endl;
-}
 
+}
