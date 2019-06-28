@@ -28,20 +28,20 @@ class		Fixed
 
 		bool	operator > (const Fixed &rhs) const;
 		bool	operator < (const Fixed &rhs) const;
-		bool	operator >=(const Fixed &rhs) const;
-		bool	operator <=(const Fixed &rhs) const;
-		bool	operator ==(const Fixed &rhs) const;
-		bool	operator !=(const Fixed &rhs) const;
+		bool	operator >= (const Fixed &rhs) const;
+		bool	operator <= (const Fixed &rhs) const;
+		bool	operator == (const Fixed &rhs) const;
+		bool	operator != (const Fixed &rhs) const;
 
 		Fixed	operator + (const Fixed &rhs) const;
 		Fixed	operator - (const Fixed &rhs) const;
 		Fixed	operator * (const Fixed &rhs) const;
 		Fixed	operator / (const Fixed &rhs) const;
 
-		Fixed &	operator ++(void);
-		Fixed	operator ++(int);
-		Fixed &	operator --(void);
-		Fixed	operator --(int);
+		Fixed &	operator ++ (void);
+		Fixed	operator ++ (int);
+		Fixed &	operator -- (void);
+		Fixed	operator -- (int);
 
 		static Fixed &			min(Fixed &a, Fixed &b);
 		static const Fixed &	min(const Fixed &a, const Fixed &b);
