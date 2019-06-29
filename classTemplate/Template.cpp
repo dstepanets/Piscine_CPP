@@ -1,7 +1,7 @@
 #include "Template.hpp"
 #include <iostream>
 
-/*======================CONSTRUCTORS=================================*/
+/*==============================CONSTRUCTORS=================================*/
 
 Template::Template(void) : _var(0)
 {
@@ -24,19 +24,7 @@ Template::~Template(void)
 	std::cout << "Destructor called" << std::endl;
 }
 
-/*======================GETTERS-SETTERS============================*/
-
-int					Template::getVar(void) const
-{
-	return (this->_var);
-}
-
-void				Template::setVar(int var)
-{
-	this->_var = var;
-}
-
-/*======================OPERATORS=================================*/
+/*================================OPERATORS==================================*/
 
 Template & 			Template::operator = (Template const &rhs)
 {
@@ -50,3 +38,19 @@ std::ostream &		operator << ( std::ostream & o, Template const &i )
 	o << i.getVar();
 	return (o);
 }
+
+/*==============================GETTERS-SETTERS==============================*/
+
+int					Template::getVar(void) const
+{
+	return (this->_var);
+}
+
+void				Template::setVar(int var)
+{
+	this->_var = var;
+}
+
+/*===========================FUNCTIONS=======================================*/
+
+
