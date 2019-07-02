@@ -12,31 +12,32 @@
 
 #include "Bureaucrat.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int			main(void)
 {
 	std::cout << "================ Bureaucrat ========================" << std::endl;
+
+	Bureaucrat		bum("Noname Bum", 150);
+	std::cout << bum << std::endl;
+
+	Bureaucrat 	vas("Vasyl Hrygorovych Zayibysko", 1);
+	std::cout << vas << std::endl;
 	try 
 	{
-		Bureaucrat		b("Danylo Volotsiuha", 150);
-		std::cout << b << std::endl;
 
-		Bureaucrat 	c("Vasyl Hrygorovych Zayibysko", 1);
-		std::cout << c << std::endl;
 
 		// Bureaucrat 	d("Domkrat", 0);
 		// std::cout << d << std::endl;
 
-		b = c;
-		std::cout << b << std::endl;
-
-		c.decrementGrade();
-		std::cout << c << std::endl;
+		vas.decrementGrade();
+		std::cout << vas << std::endl;
 	
-		c.incrementGrade();
-		std::cout << c << std::endl;
-		c.incrementGrade();
-		std::cout << c << std::endl;
+		vas.incrementGrade();
+		std::cout << vas << std::endl;
+		vas.incrementGrade();
+		std::cout << vas << std::endl;
 	}
 	catch (std::exception &e)
 	{
@@ -49,7 +50,7 @@ int			main(void)
 
 	Bureaucrat				zel("Zelenkin", 10);
 	std::cout << zel;
-	ShrubberyCreationForm	garden("PlantGardenForm");
+	ShrubberyCreationForm	garden("president_palace");
 	std::cout << garden << std::endl;
 
 	std::cout << "	[preZedent plants a tree]" << std::endl;
@@ -81,8 +82,58 @@ int			main(void)
 	{
 		std::cerr << e.what() << std::endl;
 	}
+
+	std::cout << std::endl << "	[Volotsiuha fails to execute robotomy]" << std::endl;
+
+	RobotomyRequestForm		robo("Pavlo Zibrov");
+	std::cout << bum;
+	std::cout << robo << std::endl;
+
+	try
+	{
+		bum.signForm(robo);
+		bum.executeForm(robo);
+	}
+	catch(const std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	std::cout << std::endl << "	[Zayibysko signs and executes robotomy]" << std::endl;
+	std::cout << vas;
+
+	try
+	{
+		robo.beSigned(vas);
+		vas.executeForm(robo);
+	}
+	catch(const std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	std::cout << std::endl << "	[Zaphod pardons Chikatilo]" << std::endl;
+
+	Bureaucrat				zaf("Zaphod Beeblebrox", 6);
+	std::cout << zaf;
+
+	PresidentialPardonForm	pard("Chikatilo");
+	std::cout << pard << std::endl;
+
+	try
+	{
+		zaf.signForm(pard);
+		pard.beSigned(zaf);
+		pard.execute(zaf);
+	}
+	catch(const std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+
+	zaf.incrementGrade();
+	std::cout << zaf;
+	pard.execute(zaf);
 	
-
-
 	return (0);
 }

@@ -11,36 +11,44 @@
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 int			main(void)
 {
-	Bureaucrat		b("Danylo Volotsiuha", 150);
-	std::cout << b << std::endl;
+		
+	std::cout << std::endl << "==================== EX03 =======================" << std::endl;
 
-	Bureaucrat 	c("Vasyl Hrygorovych Zayibysko", 1);
-	std::cout << c << std::endl;
+	Intern	someRandomIntern;
+	Form*	rrf;
 
-	try 
-	{
-		// Bureaucrat 	d("Domkrat", 0);
-		// std::cout << d << std::endl;
+	rrf = someRandomIntern.makeForm("robotomy request", "Bender");
 
-		b = c;
-		std::cout << b << std::endl;
+	Bureaucrat		zaf("Zaphod Beeblebrox", 5);
+	std::cout << zaf << std::endl;
 
-		c.decrementGrade();
-		std::cout << c << std::endl;
-	
-		c.incrementGrade();
-		std::cout << c << std::endl;
-		c.incrementGrade();
-		std::cout << c << std::endl;
-	}
-	catch (std::exception &e)
-	{
-		std::cout << "Something is wrong with those beraucrats... " << std::endl;
-		std::cout << e.what() << std::endl;
-	}
+	zaf.signForm(*rrf);
+	zaf.executeForm(*rrf);
+	delete rrf;
+	std::cout << std::endl;
 
+	rrf = someRandomIntern.makeForm("Shrubbery Creation", "Space");
+	zaf.signForm(*rrf);
+	zaf.executeForm(*rrf);
+	delete rrf;
+	std::cout << std::endl;
+
+	rrf = someRandomIntern.makeForm("presidential pardon", "You");
+	zaf.signForm(*rrf);
+	zaf.executeForm(*rrf);
+	delete rrf;
+	std::cout << std::endl;
+
+	rrf = someRandomIntern.makeForm("Pass CPP Piscine", "Me");
+	std::cout << std::endl;
+
+//	system("leaks -q a.out");
 	return (0);
 }

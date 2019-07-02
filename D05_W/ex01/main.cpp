@@ -16,13 +16,15 @@
 int			main(void)
 {
 	std::cout << "================ Bureaucrat ========================" << std::endl;
+	
+	Bureaucrat		b("Danylo Volotsiuha", 150);
+	std::cout << b << std::endl;
+
+	Bureaucrat 	c("Vasyl Hrygorovych Zayibysko", 1);
+	std::cout << c << std::endl;
+
 	try 
 	{
-		Bureaucrat		b("Danylo Volotsiuha", 150);
-		std::cout << b << std::endl;
-
-		Bureaucrat 	c("Vasyl Hrygorovych Zayibysko", 1);
-		std::cout << c << std::endl;
 
 		// Bureaucrat 	d("Domkrat", 0);
 		// std::cout << d << std::endl;
