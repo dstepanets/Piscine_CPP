@@ -19,7 +19,7 @@ OBJ_DIR		= ./obj/
 
 SRC			=	serialize.cpp
 
-HPP			=	
+HPP			=	serialize.hpp
 
 OBJ 		= $(addprefix $(OBJ_DIR), $(SRC:.cpp=.o))
 
