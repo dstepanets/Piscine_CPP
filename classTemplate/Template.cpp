@@ -54,3 +54,14 @@ void				Template::setVar(int var)
 /*===========================FUNCTIONS=======================================*/
 
 
+
+/*===========================EXCEPTIONS======================================*/
+
+Template::Exception::Exception(void) {}
+Template::Exception::Exception(Exception const &src) {*this = src;}
+Template::Exception::~Exception(void) throw() {}
+Template::Exception &Template::Exception::operator = (Template::Exception const &rhs) 
+	{std::exception::operator=(rhs); return *this;}
+const char *		Template::Exception::what(void) const throw()
+	{return ("Template error.");}
+

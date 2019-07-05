@@ -13,6 +13,16 @@ class					Template
 
 		Template &	operator = (const Template &rhs);
 
+		class	Exception : public std::exception
+		{
+		public:
+			Exception(void);
+			Exception(const Exception &src);
+			~Exception(void) throw();
+			Exception& operator = (const Exception &rhs);
+			virtual const char* what() const throw();
+		};
+
 		int			getVar(void) const;
 		void		setVar(int var);
 
