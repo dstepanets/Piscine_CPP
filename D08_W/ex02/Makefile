@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 
-NAME		= span
+NAME		= mutant
 CC			= clang++
 FLAGS		= -g -Wall -Wextra -Werror -std=c++98 -Wconversion
 
